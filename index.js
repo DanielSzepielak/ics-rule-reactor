@@ -1,17 +1,15 @@
-/* MIT License
-
-rule-reactor: A light weight, fast, expressive forward chaining business rule engine leveraging JavaScript internals and Functions as objects rather than Rete.
-
-Copyright (c) 2016 Simon Y. Blackwell
-
-*/
-
-var uuid = require("uuid");
+    /* MIT License
+     rule-reactor: A light weight, fast, expressive forward chaining business rule engine leveraging JavaScript internals and Functions as objects rather than Rete.
+     Copyright (c) 2016 Simon Y. Blackwell
+     */
+    /* eslint-disable */
+    var uuid = require("uuid");
 //var hamsters = require("webhamsters/src/hamsters");
 //var Parallel = require("paralleljs");
 
-(function() {
-	"use strict";
+    (function() {
+        // "use strict";
+        // NOTE: DON'T USE STRICT - IT WILL CRASH THE RULE REACTOR IF IT RECEIVES ANY MESSAGE THAT DOES NOT HAVE ALL EXPECTED PROPERTIES USED IN RULES (activeKeys)
 	
 	var domains = global;
 	
