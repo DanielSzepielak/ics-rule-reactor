@@ -446,16 +446,21 @@ var uuid = require("uuid");
 	Activation.prototype.cancel = function() {
 		this.cancelled = true;
 	}
-	Activation.prototype.execute = function(index) {
-		var me = this;
-		// re-test just in-case
-		me.delete(undefined,index,true);
-		if(!me.cancelled && (!me.bindings || me.bindings.verify(me.index,me.match)) && me.rule.compiledConditions.every(function(condition) {
-			return condition.call(me,me.match);
-		})) {
-			me.rule.fire(me.match);
-		}
-	}
+        Activation.prototype.execute = function(index) {
+            var me = this;
+
+            me.delete(undefined,index,true);
+            if(!me.cancelled && (!me.bindings || me.bindings.verify(me.index,me.match))) {
+                me.rule.fire(me.match);
+            }
+            // NOTE disable re-testing #issue 22
+            // // re-test just in-case
+            // if(!me.cancelled && (!me.bindings || me.bindings.verify(me.index,me.match)) && me.rule.compiledConditions.every(function(condition) {
+            //         return condition.call(me,me.match);
+            //     })) {
+            //     me.rule.fire(me.match);
+            // }
+        }
 	Activation.prototype.delete = function(instance,index,supresslog) {
 		var me = this, i;
 		if(!instance || me.match.indexOf(instance)>=0) {
